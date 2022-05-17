@@ -20,7 +20,8 @@
     "environmentVariables": {
       "ASPNETCORE_ENVIRONMENT": "Production"
     }
-  },
+  },git commit -m "first commit"
+
   "profiles": {
     "WebApplication2": {
       "commandName": "Project",
