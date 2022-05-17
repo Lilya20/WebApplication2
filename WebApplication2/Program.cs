@@ -1,6 +1,25 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.HttpOverrides;git commit
+using Microsoft.Extensions.DependencyInjection;
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+// DI container
+builder.Services.AddControllers();
+
+
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+//Middleware Pipeline
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+app.UseRouting();
+app.UseEndpoints(endpoint =>
+{
+    endpoint.MapControllers();
+});
 
 app.Run();
